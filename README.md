@@ -10,7 +10,7 @@
 - Phân biệt sealed class và inner class.
 - Tại sao cần sử dụng sealed class.
 
-﻿# Yêu cầu
+# Yêu cầu
  
  - Push code thường xuyên.
  - Commit message rõ ràng làm gì làm như thế nào ví dụ [EDIT] add zyzMethod in AbcRepository.
