@@ -5,5 +5,6 @@ class Dog(val name: String) : Animal(name){
     override fun showName() {
         println("This is a $type named: $name")
     }
- // Have to override action value because it hasn't been defined yet.
+    //override fun showMessage() {}
+    // error because showMessage is declared with "final"
 }

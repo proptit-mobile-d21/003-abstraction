@@ -1,4 +1,4 @@
-class Cat(val name: String) : Animal(name), Predator, Prey{
+class Cat(val name: String) : Animal(name){
     override val legs: Int = 4
     override val type: String
         get() = "cat"
@@ -8,6 +8,4 @@ class Cat(val name: String) : Animal(name), Predator, Prey{
     //override fun showMessage() {}
     // error because showMessage is declared with "final"
 
-    override val action = "Searching for cat and hiding from dog"
-    //Must override action value because both Predator and Pray interfaces have action value.
 }
