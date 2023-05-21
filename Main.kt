@@ -1,0 +1,6 @@
+// abstraction homework
+
+fun main()
+{
+
+}
