@@ -4,11 +4,16 @@ abstract class Animal{
         println("I am eating")
     }
 }
+
 class Dog: Animal(){
     override fun makeSound() {
         println("Go go go!!!")
     }
 }
+interface IFlyable{
+    fun fly()
+}
+
 fun main(){
     val dog = Dog()
     dog.makeSound()
