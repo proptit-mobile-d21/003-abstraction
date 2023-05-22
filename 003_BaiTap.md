@@ -1,4 +1,25 @@
 1. Lấy ví dụ làm rõ tính abstract của lập trình hướng đối tượng.
+```kotlin
+abstract class Person(val name : String, val age : Int, val height : Double, val weight : Double){
+    internal fun calBMI() : Double {
+        return weight/(height * height)
+    }
+
+    abstract fun calSalary(dayWorked: Int, daySalary : Double) : Double
+}
+
+class Dev(name: String, age: Int, height: Double, weight: Double) : Person(name, age, height, weight){
+    override fun calSalary(dayWorked: Int, daySalary : Double) : Double{
+        return dayWorked * daySalary
+    }
+}
+
+fun main(){
+    val dev = Dev("Thuy", 18, 1.53, 42.0)
+    println("BMI: ${String.format("%.1f", dev.calBMI())}")
+    println("Salary: ${String.format("%.1f", dev.calSalary(20, 100.0))}")
+}
+```
 
 2. Lấy ví dụ làm rõ tác dụng của interface và abstract class.
 
