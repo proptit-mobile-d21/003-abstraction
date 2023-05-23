@@ -1,26 +1,29 @@
 ### **1. Lấy ví dụ làm rõ tính abstract của lập trình hướng đối tượng.**
 - Abstract: 
     ```kotlin
-    abstract class Person(val name : String, val age : Int, val height : Double, val weight : Double){
-        internal fun calBMI() : Double {
-            return weight/(height * height)
-        }
-
-        abstract fun calSalary(dayWorked: Int, daySalary : Double) : Double
+    interface Drawable {
+        fun draw()
     }
 
-    class Dev(name: String, age: Int, height: Double, weight: Double) : Person(name, age, height, weight){
-        override fun calSalary(dayWorked: Int, daySalary : Double) : Double{
-            return dayWorked * daySalary
+    class Circle : Drawable {
+        override fun draw() {
+            println("Drawing a circle")
         }
     }
 
-    fun main(){
-        val dev = Dev("Thuy", 18, 1.53, 42.0)
-        println("BMI: ${String.format("%.1f", dev.calBMI())}")
-        println("Salary: ${String.format("%.1f", dev.calSalary(20, 100.0))}")
+    class Square : Drawable {
+        override fun draw() {
+            println("Drawing a square")
+        }
     }
-    
+
+    fun main() {
+        val circle = Circle()
+        circle.draw()
+
+        val square = Square()
+        square.draw()
+    }
     ```
 
 ### **2. Lấy ví dụ làm rõ tác dụng của interface và abstract class.**
@@ -89,7 +92,7 @@
 
 ### **4. Từ 3 ví dụ trên trả lời câu hỏi tại sao cần sử dụng tính abstract.**
 
-- 
+- Thay vì ta cho users biết chi tiết ***properties***, ***functions***, cách thức hoạt động của một object thì ta đưa cho user cách sử dụng một object hoàn chỉnh mà không cần quan tâm những cái bên trong nó xảy ra như nào. 
 
 ### **5. Tìm hiểu sealed class.**
 
@@ -164,3 +167,4 @@
     val demo = Outer().Inner().foo() // == 1
     ```
 ### **8. Tại sao cần sử dụng sealed class.**
+- Nếu ta muốn có một số ***constants*** có sự liên quan đến nhau, tuy nhiên mỗi ***constant*** lưu trữ data và implements các ***functions*** khác nhau thì ta cần dùng đến `sealed` class.
