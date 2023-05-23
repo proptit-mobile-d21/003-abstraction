@@ -1,31 +1,19 @@
-// Abstract class
 abstract class Animal {
     abstract fun sound()
     fun sleep() {
-        println("Zzzzz")
+        println("The animal is sleeping")
     }
 }
 
-// Interface
-interface Jumpable {
-    fun jump()
-}
-
-// Class Dog kế thừa từ abstract class Animal và triển khai interface Jumpable
-class Dog : Animal(), Jumpable {
+class Dog : Animal() {
     override fun sound() {
-        println("Woof!")
-    }
-
-    override fun jump() {
-        println("Jumping...")
+        println("Woof woof!")
     }
 }
 
-// Class Bird triển khai interface Jumpable
-class Bird : Jumpable {
-    override fun jump() {
-        println("Birds can jump!")
+class Cat : Animal() {
+    override fun sound() {
+        println("Meow!")
     }
 }
 
@@ -33,8 +21,8 @@ fun main() {
     val dog = Dog()
     dog.sound()
     dog.sleep()
-    dog.jump()
 
-    val bird = Bird()
-    bird.jump()
+    val cat = Cat()
+    cat.sound()
+    cat.sleep()
 }
