@@ -11,17 +11,19 @@ interface Movable {
     fun move() = println("I'm moving")
 }
 
+interface Speakable {
+    fun introduce()
+}
+
 // Có thể kế thừa nhiều Interface nhưng chỉ có thể kế thừa 1 Abstract Class
 // Sử dụng Abstract Class vì có những phương thức bắt buộc các Subclass phải định nghĩa như: introduce()
-abstract class Creature: Nameable, Mortal {
+abstract class Creature: Nameable, Mortal, Speakable {
     abstract val livingYear: Int
 
     val age:Int
         get() = livingYear - yearOfBirth
 
     override var isAlive: Boolean = true // Trạng thái hiện tại của Creature (Interface không thể lưu được trạng thái)
-
-    abstract fun introduce()
 }
 
 class FanAstralis(override val name: String, override val yearOfBirth: Int) : Creature() {
