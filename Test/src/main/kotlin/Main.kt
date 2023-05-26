@@ -1,4 +1,4 @@
-interface UsableElectricity {
+interface UsableElectricity { //
     val isUseElectricity: Boolean
 }
 
@@ -6,10 +6,12 @@ interface Function {
     val purpose: String
 }
 
+// Một Class có thể kế thừa nhiều Interface
 abstract class Item(price: Int) : Function, UsableElectricity {
-    abstract fun showPrice()
+    abstract fun showPrice() // phương thức showPrice bắt buộc phải được triển khai tại các Class con
 }
 
+// Lưu trạng thái của thuộc tính từ Interface
 interface Furniture : UsableElectricity {
     override val isUseElectricity: Boolean
         get() = false
