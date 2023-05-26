@@ -5,7 +5,11 @@ sealed class Shape{
     data class Rectangle(val width: Int, val height: Int) : Shape()
     data class Circle(val radius: Int) : Shape()
 }
-
+enum class EnumShape(string: String){
+    None("None"),
+    Rectangle("Rectangle"),
+    Circle("Circle")
+}
 fun area(shape : Shape) = when(shape){
     is Shape.None -> 0
     is Shape.Circle -> shape.radius * shape.radius * PI
