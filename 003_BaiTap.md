@@ -94,6 +94,8 @@
 
 - Thay vì ta cho users biết chi tiết ***properties***, ***functions***, cách thức hoạt động của một object thì ta đưa cho user cách sử dụng một object hoàn chỉnh mà không cần quan tâm những cái bên trong nó xảy ra như nào. 
 
+- Ứng dụng trong phát triển phần mềm:  Khi developers muốn xây dựng API/librabries thì họ chỉ cần cung cấp interface đơn giản rõ ràng cho những dev khác sử dụng và ẩn đi những thứ phức tạp ở đằng sau.
+
 ### **5. Tìm hiểu sealed class.**
 
 - `Sealed` classes tương tự với `enum` classes nhưng thay vì enum constants thì `sealed` classes chứa các ***subclasses (***là các ***nested class*** được khai báo bên trong ***`sealed`*** class đó***).***
@@ -168,3 +170,5 @@
     ```
 ### **8. Tại sao cần sử dụng sealed class.**
 - Nếu ta muốn có một số ***constants*** có sự liên quan đến nhau, tuy nhiên mỗi ***constant*** lưu trữ data và implements các ***functions*** khác nhau thì ta cần dùng đến `sealed` class.
+- Khi dùng `when` với `sealed` class thì compiler sẽ kiểm tra xem `when` của mình đã xét hết các trường hợp ***subclasses*** của `sealed` class chưa, nếu chưa sẽ báo lỗi.
+- Giúp kiểm soát việc class nào có thể inherit từ `sealed` class, mình cũng có thể biết tất cả các trường hợp của ***subclasses*** và không có trường hợp nào ngoại lệ.
