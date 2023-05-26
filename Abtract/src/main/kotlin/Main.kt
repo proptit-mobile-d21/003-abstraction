@@ -50,4 +50,14 @@ fun main(){
         và một class khi hiện thực một interface được gọi là can-do
      */
 
+    /*  Tác dụng của Abtract trong quá trình bảo trì và phát trển phầm mềm
+           - Cung cấp một cách tóm tắt thông tin về 1 class nào đó, thống nhất các class có
+           đặc điểm giống nhau
+           - Giúp chương trình được sắp xếp logic, rõ ràng, dễ hiểu: Khi một người
+            đọc vào 1 class Dog,.. và thuộc lớp Animal thì chắc chắn sẽ có những thuộc tính,
+            hành vi của lớp Animal
+           - Tái sử dụng mã nguồn: Khi tạo class mới cần có những hành vi, thuộc tính tương tự
+           lớp cha thì chỉ cần kế thừa lại
+     */
+
 }
