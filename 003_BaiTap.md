@@ -28,65 +28,62 @@
 
 ### **2. Lấy ví dụ làm rõ tác dụng của interface và abstract class.**
 
-- Interface
-    ```kotlin
-    interface Workable{
-        fun calSalary(dayWorked: Int, daySalary: Double) : Double
+```kotlin
+abstract class Person(val name : String, val age : Int, val height : Double, val weight : Double){
+    val hasHair : Boolean = true
+    internal fun calBMI() : Double {
+        return weight/(height * height)
+    }
+    abstract fun giveInfomation()
+}
+
+interface Workable{
+    val dayWorked : Int
+    val daySalary : Double
+    fun calSalary() : Double
+}
+
+interface Driveable{
+    val hasLicense : Boolean
+}
+
+class Child(name : String, age : Int, height: Double, weight: Double) : Person(name, age, height, weight){
+    override fun giveInfomation() {
+        println("Name: $name    Age: $age    BMI: ${calBMI()}")
+    }
+}
+
+class Dev(name: String, age: Int, height: Double, weight: Double) : Person(name, age, height, weight), Workable, Driveable{
+    override val dayWorked = 10
+    override val daySalary = 100.0
+    override val hasLicense = true
+
+    override fun calSalary() : Double{
+        return dayWorked * daySalary
     }
 
-    interface Fix{
-        fun fixComputer()
+    override fun giveInfomation() {
+        println("Name: $name    Age: $age   BMI: ${calBMI()}    Salary: ${calSalary()}      License: $hasLicense")
     }
+}
 
-    private class Dev :Workable, Fix{
-        override fun calSalary(dayWorked : Int, daySalary : Double) : Double{
-            return dayWorked * daySalary
-        }
-
-        override fun fixComputer() {
-            println("Dev fixs the computer.")
-        }
-    }
-
-    fun main(){
-        val dev = Dev()
-        println("Salary: ${String.format("%.1f", dev.calSalary(20, 100.0))}")
-        dev.fixComputer()
-    }
-    ```
-
-- Abstract class:
-    ```kotlin
-    abstract class Person(val name : String, val age : Int, val height : Double, val weight : Double){
-        internal fun calBMI() : Double {
-            return weight/(height * height)
-        }
-
-        abstract fun calSalary(dayWorked: Int, daySalary : Double) : Double
-    }
-
-    class Dev(name: String, age: Int, height: Double, weight: Double) : Person(name, age, height, weight){
-        override fun calSalary(dayWorked: Int, daySalary : Double) : Double{
-            return dayWorked * daySalary
-        }
-    }
-
-    fun main(){
-        val dev = Dev("Thuy", 18, 1.53, 42.0)
-        println("BMI: ${String.format("%.1f", dev.calBMI())}")
-        println("Salary: ${String.format("%.1f", dev.calSalary(20, 100.0))}")
-    }
-    ```
+fun main(){
+    val dev = Dev("Thuy", 18, 1.53, 42.0)
+    val child = Child("Thuy", 8, 100.0, 30.0)
+    dev.giveInfomation()   // Name: Thuy    Age: 18   BMI: 17.941817249775728    Salary: 1000.0      License: true
+    child.giveInfomation() // Name: Thuy    Age: 8    BMI: 0.003
+}
+```
 
 ### **3. Lấy ví dụ phân biệt sự khác biệt giữa interface và abstract class.**
 
-- Từ ví dụ ở câu 2, ta có thể thấy một số khác biệt giữa interface và abstract class như sau:
+Từ ví dụ ở câu 2, ta có thể thấy một số khác biệt giữa interface và abstract class như sau:
 
-| Interface | Abstract Class |
-| - | - |
-| Một class có thể implement nhiều interfaces. | Một class chỉ có thể extend một abstract class. |
-| Không thể tạo constructors, init blocks. | Có thể tạo constructors, init blocks. 
-| Chỉ có `public`, không có các access modifiers khác. | Có access modifiers. |
+- Class Dev có thể implement 2 interface Workable và Driveable, nhưng chỉ có thể kế thừa 1 abstract class Person.
+
+- Trong abstract class những function/property có keyword `abstract` thì subclass mới phải `override` lại, còn trong interface thì các abstract function (without body) đều phải `override` lại trong các class mà implement nó.
+
+- Trong interface không thể gán giá trị mặc định cho biến `hasLicense`, nhưng trong abstract class thì có thể gán giá trị mặc định cho `hasHair` = true.
 
 
 
