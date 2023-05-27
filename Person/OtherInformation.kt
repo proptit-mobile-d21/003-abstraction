@@ -1,0 +1,3 @@
+interface OtherInformation {
+    fun ShowOtherInformation(){}
+}

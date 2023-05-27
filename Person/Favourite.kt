@@ -1,0 +1,4 @@
+interface Favourite
+{
+    fun HisFavourite(){}
+}
