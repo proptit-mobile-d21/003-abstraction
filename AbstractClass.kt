@@ -2,37 +2,45 @@ package com.example.test
 
 import java.text.DecimalFormat
 
-// Abstract class shape đại diện cho các hình học
-abstract class Shape(private val nameShape: String) {   // Hàm khởi tạo truyền vào tên hình học
-    // Phương thức trừu tượng tính diện tích
+abstract class Shape(private val nameShape: String) {
     abstract fun calculateArea(): Double
 
-    // Phương thức thông báo ra màn hình diện tích của hình
     fun displayArea() {
         println("Area of $nameShape is: ${DecimalFormat("#.##").format(calculateArea())}")
     }
 }
 
-// Lớp con Circle triển khai lớp Shape
+interface SpaceFigure {
+    fun show()
+}
 class Circle(private val radius: Double) : Shape("Circle") {
-    // override lại hàm tính diện tích
     override fun calculateArea(): Double {
         return Math.PI * radius * radius
     }
 }
 
-// Lớp con Rectangle triển khai lớp Shape
 class Rectangle(private val width: Double, private val length: Double) : Shape("Rectangle") {
-    // override lại hàm tính diện tích
     override fun calculateArea(): Double {
         return width * length
+    }
+}
+
+class Cube(private val width: Double) : Shape("Cube"), SpaceFigure {
+    override fun calculateArea(): Double {
+        return 6 * width * width
+    }
+    override fun show() {
+        println("This is space figure")
     }
 }
 
 fun main() {
     val circle = Circle(2.0)
     val rectangle = Rectangle(4.0, 5.0)
+    val cube = Cube(5.0)
 
     circle.displayArea()
     rectangle.displayArea()
+    cube.displayArea()
+    cube.show()
 }
