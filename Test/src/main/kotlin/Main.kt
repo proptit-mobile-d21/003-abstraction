@@ -1,54 +1,56 @@
-interface UsableElectricity { //
-    val isUseElectricity: Boolean
+interface UsableElectricity {
+
 }
 
-interface Function {
-    val purpose: String
+interface License {
+    fun legalItem(name: String) {
+        println("A $name is legal")
+    }
 }
 
-// Một Class có thể kế thừa nhiều Interface
-abstract class Item(price: Int) : Function, UsableElectricity {
-    abstract fun showPrice() // phương thức showPrice bắt buộc phải được triển khai tại các Class con
+abstract class Item(val price: Int) {
+    abstract fun showPrice()
+    abstract val name: String
+    abstract val purpose: String
 }
 
-// Lưu trạng thái của thuộc tính từ Interface
-interface Furniture : UsableElectricity {
-    override val isUseElectricity: Boolean
-        get() = false
-}
-
-interface Appliance : UsableElectricity {
-    override val isUseElectricity: Boolean
-        get() = true
-}
-
-class Sofa(private val price: Int) : Item(price), Furniture {
+class Sofa(price: Int) : Item(price), License {
+    override val name = "Sofa"
     override fun showPrice() {
-        println("A sofa priced at $price");
+        println("A $name priced at $price")
     }
 
-    override val purpose: String
-        get() = "To sit down and relax"
+    override val purpose = "To sit down and relax"
 }
 
-class Refrigerator(private val price: Int) : Item(price), Appliance {
+class Refrigerator(price: Int) : Item(price), UsableElectricity, License {
+    override val name = "Refrigerator"
     override fun showPrice() {
-        println("A Refrigerator priced at $price")
+        println("A $name priced at $price");
     }
 
-    override val purpose: String
-        get() = "To preserve food"
+    override val purpose = "To preserve food"
+}
+
+class Cigarette(price: Int) : Item(price) {
+    override val name = "Cigarette"
+    override fun showPrice() {
+        println("A $name priced at $price");
+    }
+
+    override val purpose = "To preserve food"
 }
 
 fun main(args: Array<String>) {
     val item = listOf<Item>(
-        Sofa(10000), Refrigerator(7500), Sofa(15000), Refrigerator(12000)
+        Sofa(10000), Refrigerator(7500), Sofa(15000), Cigarette(12000)
     )
 
     item.forEach { x ->
         x.showPrice()
         println(x.purpose)
-        println("Is consuming electricity = ${x.isUseElectricity}")
+        println("Is consuming electricity = ${x is UsableElectricity}")
+        if (x is License) x.legalItem(x.name)
         println()
     }
 }
