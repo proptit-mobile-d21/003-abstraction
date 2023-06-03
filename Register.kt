@@ -52,7 +52,6 @@ fun main() {
     println("Register by:")
     println("1. Email")
     println("2. Phone number")
-    println("3. Exit")
     print("Enter choice: ")
 
     when (readln().toInt()) {
